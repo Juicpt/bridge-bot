@@ -13,6 +13,14 @@ export class CombinedAdapter extends KoishiWsAdapter {
     this.ioAdapter = new IoAdapter(appOrHttpServer);
   }
 
+  bindClientDisconnect(client: Socket | WebSocket, callback: Function) {
+    if (client instanceof Socket) {
+      this.ioAdapter.bindClientDisconnect(client, callback);
+      return;
+    }
+    super.bindClientDisconnect(client, callback);
+  }
+
   public create(
     port: number,
     options?: ServerOptions & { namespace?: string; server?: any } & { socketIo: boolean }
@@ -34,4 +42,5 @@ export class CombinedAdapter extends KoishiWsAdapter {
     }
     return super.bindMessageHandlers(socket, handlers, transform);
   }
+
 }

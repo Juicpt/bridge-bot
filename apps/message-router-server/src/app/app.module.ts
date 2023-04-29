@@ -30,7 +30,7 @@ import { BridgeModule } from '../bridge/bridge.module';
     KoishiModule.register({
       // 在这里填写 Koishi 配置参数
       prefix: ['.', '/'],
-      useWs: false,
+      useWs: true,
       autoAuthorize: 0,
       autoAssign: false,
       usePlugins: [

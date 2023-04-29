@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class BridgeService {
   devices: Map<string, Socket> = new Map();
-  deviceSubject = new Subject<{ status: string, socket?: Socket, device: string }>();
+  deviceSubject = new Subject<{ status: 'add'|'remove', socket?: Socket, device: string }>();
 
   addDevices(device: string, socket: Socket) {
     if (this.devices.has(device)) {
