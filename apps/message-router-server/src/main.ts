@@ -3,16 +3,16 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from "@nestjs/common";
-import { NestFactory } from "@nestjs/core";
+import { Logger } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from "./app/app.module";
-import { KoishiWsAdapter } from 'koishi-nestjs';
+import { AppModule } from './app/app.module';
+import { CombinedAdapter } from './adapter/combined-adapter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useWebSocketAdapter(new KoishiWsAdapter(app))
-  const globalPrefix = "api";
+  app.useWebSocketAdapter(new CombinedAdapter(app));
+  const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
   await app.listen(port);

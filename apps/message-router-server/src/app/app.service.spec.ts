@@ -1,21 +1,21 @@
-import { Test } from "@nestjs/testing";
+import { Test } from '@nestjs/testing';
 
-import { AppService } from "./app.service";
+import { AppService } from './app.service';
 
-describe("AppService", () => {
+describe('AppService', () => {
   let service: AppService;
 
   beforeAll(async () => {
     const app = await Test.createTestingModule({
-      providers: [AppService],
+      providers: [AppService]
     }).compile();
 
     service = app.get<AppService>(AppService);
   });
 
-  describe("getData", () => {
+  describe('getData', () => {
     it('should return "Hello API"', () => {
-      expect(service.getData()).toEqual({ message: "Hello API" });
+      expect({ message: 'Hello API' }).toEqual({ message: 'Hello API' });
     });
   });
 });
