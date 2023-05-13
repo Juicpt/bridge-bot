@@ -7,6 +7,7 @@
   "dependencies": {
     "@koishijs/client": "^5.6.2",
     "@koishijs/plugin-adapter-onebot": "^5.6.7",
+    "@koishijs/plugin-adapter-qqguild": "^3.5.1",
     "@koishijs/plugin-admin": "^1.2.1",
     "@koishijs/plugin-analytics": "^1.0.3",
     "@koishijs/plugin-bind": "^1.4.1",
