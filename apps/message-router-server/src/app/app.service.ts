@@ -1,5 +1,5 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { InjectContext, OnChannel, UseEvent, WireContextService } from 'koishi-nestjs';
+import { InjectContext, OnPrivate, UseEvent, WireContextService } from 'koishi-nestjs';
 import { Context, DatabaseService, Session } from 'koishi';
 import { BridgeService } from '../bridge/bridge.service';
 
@@ -30,8 +30,8 @@ export class AppService implements OnModuleInit {
     });
   }
 
-  @OnChannel()
-  @UseEvent('message')
+  // @OnChannel()
+  // @UseEvent('message')
   async onChannelMessage(session: Session) {
     if (session.selfId === session.userId) {
       return;
@@ -60,8 +60,8 @@ export class AppService implements OnModuleInit {
     // await bot.sendPrivateMessage(session.userId, 'test234', { session: session });
   }
 
-  // @OnPrivate()
-  // @UseEvent('message')
+  @OnPrivate()
+  @UseEvent('message')
   async onMessage(session: Session) {
     if (session.selfId === session.userId) {
       return;
@@ -104,7 +104,7 @@ export class AppService implements OnModuleInit {
           const platform = data.platform;
           const tmp = data.data;
           const bot = this.ctx.bots[0];
-          await bot.sendMessage(channelId, tmp, guildId);
+          userId ? await bot.sendPrivateMessage(userId, tmp) : await bot.sendMessage(channelId, tmp, guildId);
         } catch (e) {
           this.logger.warn(`客户端${device} 消息发送出现异常!`);
           socket.send({ userId: '', platform: '', channelId: '', guildId: '', data: e.message });

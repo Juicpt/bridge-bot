@@ -13,7 +13,8 @@ import logger from '@koishijs/plugin-logger';
 import * as Status from '@koishijs/plugin-status';
 import Login from '@koishijs/plugin-login';
 // import PluginOnebot from '@koishijs/plugin-adapter-onebot';
-import PluginQQGuild from '@koishijs/plugin-adapter-qqguild';
+// import PluginQQGuild from '@koishijs/plugin-adapter-qqguild';
+import PluginLark from '@koishijs/plugin-adapter-lark';
 import * as admin from '@koishijs/plugin-admin';
 import * as bind from '@koishijs/plugin-bind';
 import * as callme from '@koishijs/plugin-callme';
@@ -24,7 +25,6 @@ import * as rateLimit from '@koishijs/plugin-rate-limit';
 import databaseSqlite from '@koishijs/plugin-database-sqlite';
 import * as schedule from 'koishi-plugin-schedule';
 import { BridgeModule } from '../bridge/bridge.module';
-import { Bot } from '@qq-guild-sdk/core';
 
 @Module({
   imports: [
@@ -55,8 +55,8 @@ import { Bot } from '@qq-guild-sdk/core';
         PluginDef(Login, {
           admin: {
             enabled: true,
-            username: '',
-            password: ''
+            username: 'juicpt',
+            password: 'juicpt'
           }
         }),
         PluginDef(admin),
@@ -72,24 +72,26 @@ import { Bot } from '@qq-guild-sdk/core';
         //   endpoint: 'ws://localhost:8080',
         //   selfId: '12345678'
         // },
-        PluginDef(PluginQQGuild, {
-          sandbox: true,
-          // intents:2,
-          intents: Bot.Intents.INTERACTIONS | Bot.Intents.GUILD_MESSAGES | Bot.Intents.DIRECT_MESSAGES | Bot.Intents.MESSAGE_AUDIT,
-          app: {
-            id: '',
-            key: '',
-            token: ''
-
-          }
+        PluginDef(PluginLark, {
+          appId: '',
+          appSecret: ''
         })
+        // PluginDef(PluginQQGuild, {
+        //   sandbox: true,
+        //   // intents:2,
+        //   intents: Bot.Intents.INTERACTIONS | Bot.Intents.GUILD_MESSAGES | Bot.Intents.DIRECT_MESSAGES | Bot.Intents.MESSAGE_AUDIT,
+        //   app: {
+        //     id: '',
+        //     key: '',
+        //     token: ''
+        //   }
+        // })
       ]
 
     }),
     EventsModule
   ],
-  providers: [AppService
-  ]
+  providers: [AppService]
 })
 export class AppModule {
 }
