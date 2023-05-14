@@ -55,8 +55,8 @@ import { BridgeModule } from '../bridge/bridge.module';
         PluginDef(Login, {
           admin: {
             enabled: true,
-            username: 'juicpt',
-            password: 'juicpt'
+            username: '123456',
+            password: '123456'
           }
         }),
         PluginDef(admin),
@@ -67,15 +67,20 @@ import { BridgeModule } from '../bridge/bridge.module';
         PluginDef(inspect),
         PluginDef(rateLimit),
         PluginDef(schedule),
+        PluginDef(PluginLark, {
+          platform:'feishu',
+          appId: '',
+          appSecret: '',
+          verificationToken:'',
+          verifySignature:true,
+          encryptKey:'',
+          path:'/api/feishu'
+        }),
         // PluginDef(PluginOnebot, {
         //   protocol: 'ws',
         //   endpoint: 'ws://localhost:8080',
         //   selfId: '12345678'
         // },
-        PluginDef(PluginLark, {
-          appId: '',
-          appSecret: ''
-        })
         // PluginDef(PluginQQGuild, {
         //   sandbox: true,
         //   // intents:2,

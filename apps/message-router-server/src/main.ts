@@ -10,7 +10,7 @@ import { AppModule } from './app/app.module';
 import { CombinedAdapter } from './adapter/combined-adapter';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule,{bodyParser:false});
   app.useWebSocketAdapter(new CombinedAdapter(app));
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
